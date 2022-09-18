@@ -64,7 +64,7 @@
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Celular</div>
-                <q-input dense outlined placeholder="Celular" v-model="estudiante.tutor">
+                <q-input dense outlined placeholder="Celular" v-model="estudiante.celular">
                   <template v-slot:prepend>
                     <q-icon name="o_phone"/>
                   </template>
@@ -202,6 +202,8 @@ export default {
   },
   methods:{
     studentCreate(){
+      if(this.estudiante.imagen==undefined)
+      { this.estudiante.imagen=''}
       this.$q.dialog({
         title: 'Confirmación',
         message: '¿Está seguro de crear el estudiante?, una vez creado no podrá ser modificado y no podrá ser eliminado hasta el día del evento.<br> <div class="text-red"> A continuación se imprimirá el formulario de inscripción para que lo lleve el día del evento.</div>',
