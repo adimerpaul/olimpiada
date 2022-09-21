@@ -18,8 +18,20 @@
     <q-page-container>
       <q-page class="q-pa-xs">
         <div class="text-h5 text-center">LISTADO DE ESTUDIANTES</div>
+        <div class="row">
+          <div class="col-3"><q-btn label="Export EXCEL" color="teal" @click="exportTable"/></div>
+          <div class="col-3"><q-btn label="ACTUALIZAR" color="green" @click="listStudent"/></div>
+
+        </div>
+
         <div class="col-12">
-          <q-table label="ESTUDIANTES" :rows="students" :columns="columnas"/>
+          <q-table label="ESTUDIANTES" :rows="students" :columns="columnas">
+            <template v-slot:body-cell-opcion="props">
+                <q-td key="opcion"  :props="props">
+                  <!--<q-btn icon="edit" dense color="yellow"/>-->
+                </q-td>
+            </template>
+          </q-table>
         </div>
       </q-page>
     </q-page-container>
@@ -28,6 +40,7 @@
 
 <script>
 import {globalStore} from "stores/global";
+import xlsx from "json-as-xlsx"
 
 export default {
   name: `Listado`,
@@ -39,14 +52,14 @@ export default {
       store:globalStore(),
       columnas:[
         {label:'opcion',field:'opcion',name:'opcion'},
-        {label:'nombres',field:'nombres',name:'nombres'},
-        {label:'apellidos',field:'apellidos',name:''},
-        {label:'unidad',field:'unidad',name:'unidad'},
-        {label:'curso',field:'curso',name:'curso'},
-        {label:'tutor',field:'tutor',name:'tutor'},
-        {label:'celular',field:'celular',name:'celular'},
-        {label:'imagen',field:'imagen',name:'imagen'},
-        {label:'categoria',field:'categoria',name:'categoria'},
+        {label:'NOMBRES',field:'nombres',name:'nombres'},
+        {label:'APELLIDOS',field:'apellidos',name:''},
+        {label:'UNIDAD',field:'unidad',name:'unidad'},
+        {label:'CURSO',field:'curso',name:'curso'},
+        {label:'TUTOR',field:'tutor',name:'tutor'},
+        {label:'CELULAR',field:'celular',name:'celular'},
+        {label:'CAPTURA',field:'imagen',name:'imagen'},
+        {label:'CATEGORIA',field:'categoria',name:'categoria'},
       ]
     }
   },
@@ -65,7 +78,36 @@ export default {
           this.students=res.data
       })
 
+      },
+    exportTable () {
+      let datacaja = [
+        {
+          sheet: "Estudiantes",
+          columns: [
+            { label: "", value: "" }, // Top level data
+            { label: "NOMBRES", value: "nombres" }, // Top level data
+            { label: "APELLIDOS", value: "apellidos" }, // Top level data
+            { label: "UNIDAD", value: "unidad" }, // Top level data
+            { label: "CURSO", value: "curso" }, // Top level data
+            { label: "CURSO", value: "hora" }, // Top level data
+            { label: "TUTOR", value: "tutor" }, // Top level data
+            { label: "CELULAR", value: "celular" }, // Top level data
+            { label: "CATEGORIA", value: "categoria" }, // Top level data
+          ],
+          content: this.students
+        },
+
+      ]
+
+      let settings = {
+        fileName: "Olimpiadas", // Name of the resulting spreadsheet
+        extraLength: 8, // A bigger number means that columns will be wider
+        writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
       }
+
+      xlsx(datacaja, settings) // Will download the excel file
+    },
+
   }
 
 }
