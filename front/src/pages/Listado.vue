@@ -31,6 +31,11 @@
                   <!--<q-btn icon="edit" dense color="yellow"/>-->
                 </q-td>
             </template>
+            <template v-slot:body-cell-imagen="props">
+              <q-td key="imagen" :props="props" style="  display: flex; height: 80px; justify-content: center;" >
+                <div v-if="props.row.imagen!=''" style="width:80px;height:80px;display: block;" @click="descargar(props.row)"><q-img :src="url+'/../../imagenes/'+props.row.imagen"  /></div>
+              </q-td>
+            </template>
           </q-table>
         </div>
       </q-page>
@@ -46,6 +51,7 @@ export default {
   name: `Listado`,
   data() {
     return {
+      url:process.env.API,
       user:{},
       students:[],
       student:{},
@@ -72,6 +78,10 @@ export default {
     this.listStudent()
   },
   methods:{
+    descargar(archivo){
+      var fileName=this.url+'/../../imagenes/'+archivo.imagen;
+      window.open(fileName, 'Download');
+    },
     listStudent(){
       this.$api.get('student').then((res) =>{
         console.log(res.data)

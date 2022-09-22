@@ -70,11 +70,10 @@
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Boleta de pago por inscripción</div>
-                <q-input dense outlined type="file">
+                  <input dense outlined type="file" @change="getImage" >
 <!--                  <template v-slot:prepend>-->
 <!--                    <q-icon name="home"/>-->
 <!--                  </template>-->
-                </q-input>
                 <q-btn color="primary" label="Guardar" type="submit" icon="add_circle_outline" class="full-width"/>
               </q-card-section>
             </q-card>
@@ -120,6 +119,9 @@ export default {
         'SAN MIGUEL',
         'SIMON BOLIVAR SECUNDARIA',
       ],
+      imagen:'',
+      archivo : null,
+
     }
   },
   computed: {
@@ -201,9 +203,14 @@ export default {
     }
   },
   methods:{
+    getImage(event){
+      this.imagen = event.target.files[0];
+    },
     studentCreate(){
-      if(this.estudiante.imagen==undefined)
-      { this.estudiante.imagen=''}
+      if(this.imagen==null)
+      { return false}
+
+
       this.$q.dialog({
         title: 'Confirmación',
         message: '¿Está seguro de crear el estudiante?, una vez creado no podrá ser modificado y no podrá ser eliminado hasta el día del evento.<br> <div class="text-red"> A continuación se imprimirá el formulario de inscripción para que lo lleve el día del evento.</div>',
@@ -212,9 +219,20 @@ export default {
         persistent: true
       }).onOk(() => {
         this.$q.loading.show()
-        this.$api.post('student',this.estudiante)
+        var data = new  FormData();
+        data.append('imagen', this.imagen);
+        data.append('nombres', this.estudiante.nombres);
+        data.append('apellidos', this.estudiante.apellidos);
+        data.append('unidad', this.estudiante.unidad);//
+        data.append('curso', this.estudiante.curso);//
+        data.append('tutor', this.estudiante.tutor);
+        data.append('celular', this.estudiante.celular);
+        data.append('categoria', this.estudiante.categoriaSelect.value);
+        this.$api.post('student',data)
         .then((response)=>{
           this.$q.loading.hide()
+          this.imagen=null
+          this.estudiante={}
           this.$q.notify({
             color: 'positive',
             textColor: 'white',

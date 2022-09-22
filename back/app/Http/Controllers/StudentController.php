@@ -36,7 +36,23 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
-        return Student::create($request->all());
+        //return Student::create($request->all());
+        $nombreimagen='';
+        if ($request->hasFile('imagen')) {
+            $file=$request->file('imagen');
+            $nombreimagen = $file->getClientOriginalName();
+            $file->move(\public_path('imagenes'), $nombreimagen);
+        }
+        $student=new Student();
+        $student->nombres=$request->nombres;
+        $student->apellidos=$request->apellidos;
+        $student->unidad=$request->unidad;
+        $student->imagen=$nombreimagen;
+        $student->curso=$request->curso;
+        $student->tutor=$request->tutor;
+        $student->celular=$request->celular;
+        $student->categoria=$request->categoria;
+        return $student->save();
     }
 
     /**
