@@ -181,7 +181,6 @@ export default {
           {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
           {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
           {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
           {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
           {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
           {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},

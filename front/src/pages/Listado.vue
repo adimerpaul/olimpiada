@@ -37,6 +37,13 @@
               </q-td>
             </template>
           </q-table>
+          <div class="row">
+            <div class="col-3"><q-select v-model="curso" :options="cursos" label="CURSO" dense outlined /></div>
+            <div class="col-3"><q-select v-model="cat" :options="categoria" label="CATEGORIA" dense outlined /></div>
+            <div class="col-3"><q-btn color="accent" label="EXCEL"  dense @click="excelFiltro"/></div>
+
+          </div>
+
         </div>
       </q-page>
     </q-page-container>
@@ -51,6 +58,27 @@ export default {
   name: `Listado`,
   data() {
     return {
+      curso:'',
+      cat:'',
+      cursos:[
+        '1ro Secundaria',
+        '2do Secundaria',
+        '3ro Secundaria',
+        '4to Secundaria',
+        '5to Secundaria',
+        '6to Secundaria',
+      ],
+      categoria:[
+        'ASTRONOMÍA Y ASTROFÍSICA',
+        'BIOLOGÍA',
+        'FÍSICA',
+        'GEOGRAFÍA',
+        'MATEMÁTICA',
+        'PROGRAMACIÓN Categoría A',
+        'PROGRAMACIÓN Categoría B',
+        'QUÍMICA',
+        'ROBÓTICA',
+      ],
       url:process.env.API,
       user:{},
       students:[],
@@ -111,6 +139,40 @@ export default {
 
       let settings = {
         fileName: "Olimpiadas", // Name of the resulting spreadsheet
+        extraLength: 8, // A bigger number means that columns will be wider
+        writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
+      }
+
+      xlsx(datacaja, settings) // Will download the excel file
+    },
+    excelFiltro () {
+      let filtro=[]
+      this.students.forEach(r=>{
+        if(r.curso==this.curso && r.categoria==this.cat){
+            filtro.push(r)
+        }
+      })
+      let datacaja = [
+        {
+          sheet: "Estudiantes",
+          columns: [
+            { label: "", value: "" }, // Top level data
+            { label: "NOMBRES", value: "nombres" }, // Top level data
+            { label: "APELLIDOS", value: "apellidos" }, // Top level data
+            { label: "UNIDAD", value: "unidad" }, // Top level data
+            { label: "CURSO", value: "curso" }, // Top level data
+            { label: "CURSO", value: "hora" }, // Top level data
+            { label: "TUTOR", value: "tutor" }, // Top level data
+            { label: "CELULAR", value: "celular" }, // Top level data
+            { label: "CATEGORIA", value: "categoria" }, // Top level data
+          ],
+          content: filtro
+        },
+
+      ]
+
+      let settings = {
+        fileName: "Olimpiadas-"+this.curso+"-"+this.cat, // Name of the resulting spreadsheet
         extraLength: 8, // A bigger number means that columns will be wider
         writeOptions: {}, // Style options from https://github.com/SheetJS/sheetjs#writing-options
       }
