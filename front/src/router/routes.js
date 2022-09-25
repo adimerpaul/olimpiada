@@ -8,12 +8,12 @@ const routes = [
     //component: () => import('layouts/MainLayout.vue'),
     //children: [
       //{ path: '', component: () => import('pages/IndexPage.vue') }
-    component: () => Login,
+    component: Login,
     //]
   },
   {
     path: '/',
-    component: () => Student,
+    component: Student,
   },
   {
     path: '/listado',component: Listado,meta: {requiresAuth: true},
