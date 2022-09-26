@@ -57,14 +57,14 @@
                   </template>
                 </q-select>
                 <div class="text-red" v-if="estudiante.categoriaSelect!=null" v-html="estudiante.categoriaSelect.fecha"></div>
-                <div class="text-subtitle2 text-grey">Tutor(Opcional)</div>
-                <q-input dense outlined placeholder="Tutor(Opcional)" v-model="estudiante.tutor">
+                <div class="text-subtitle2 text-grey">Tutor</div>
+                <q-input dense outlined placeholder="Tutor" v-model="estudiante.tutor" required>
                   <template v-slot:prepend>
                     <q-icon name="cast_for_education"/>
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Celular</div>
-                <q-input dense outlined placeholder="Celular" v-model="estudiante.celular">
+                <q-input dense outlined placeholder="Celular" v-model="estudiante.celular" required>
                   <template v-slot:prepend>
                     <q-icon name="o_phone"/>
                   </template>
@@ -219,6 +219,7 @@ export default {
       }).onOk(() => {
         this.$q.loading.show()
         var data = new  FormData();
+
         data.append('imagen', this.imagen);
         data.append('nombres', this.estudiante.nombres);
         data.append('apellidos', this.estudiante.apellidos);
