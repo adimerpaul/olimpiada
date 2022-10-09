@@ -90,6 +90,8 @@
 </template>
 
 <script>
+import {date} from 'quasar'
+import {jsPDF} from "jspdf";
 export default {
   name: `Student`,
   data() {
@@ -291,12 +293,14 @@ export default {
           this.$q.loading.hide()
           this.imagen=null
           this.estudiante={}
+          this.print(response.data)
           this.$q.notify({
             color: 'positive',
             textColor: 'white',
             icon: 'check_circle',
             message: 'Estudiante creado correctamente'
           })
+          
           // this.$router.push('/estudiantes')
         })
         .catch((error)=>{
@@ -320,7 +324,37 @@ export default {
       //   console.log(response)
       // },(error)=>{
       //   console.log(error)
-      // })
+      //, })
+    },
+    print(alumno){
+        var doc = new jsPDF('p','cm','letter')
+        var img = new Image()
+        var img2 = new Image()
+        img.src = 'uto.png'
+        img2.src = 'fni.png'
+        doc.addImage(img, 'jpg', 0.5, 0.5, 2, 2)
+        doc.addImage(img2, 'jpg', 18.5, 0.5, 2, 2)
+        doc.setFont(undefined,'bold')
+        doc.text(5, 1.5, 'V OLIMPIADA DE CIENCIA Y TECNOLOGÍA  ')
+        doc.text(3, 3, 'ALUMNO')
+        doc.text(3, 4, 'UNIDAD EDUCATIVA')
+        doc.text(3, 5, 'CURSO')
+        doc.text(3, 6, 'CELULAR')
+        doc.text(3, 7, 'TUTOR')
+        doc.text(3, 8, 'CATEGORIA')
+        doc.setFont(undefined,'normal')
+      // console.log(dat);
+      doc.setFont("courier");
+      doc.setFontSize(14);
+        doc.text(10, 3, alumno.nombres+' '+alumno.apellidos)
+        doc.text(10, 4, alumno.unidad)
+        doc.text(10, 5, alumno.curso)
+        doc.text(10, 6, alumno.celular+'')
+        doc.text(10, 7, alumno.tutor)
+        doc.text(10, 8, alumno.categoria)
+      // var x=0,y=
+      window.open(doc.output('bloburl'), '_blank');
+
     }
   }
 }

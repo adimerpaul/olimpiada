@@ -52,7 +52,8 @@ class StudentController extends Controller
         $student->tutor=$request->tutor;
         $student->celular=$request->celular;
         $student->categoria=$request->categoria;
-        return $student->save();
+         $student->save();
+         return $student;
     }
 
     /**
