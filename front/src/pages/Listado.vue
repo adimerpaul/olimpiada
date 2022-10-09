@@ -29,6 +29,8 @@
             <template v-slot:body-cell-opcion="props">
                 <q-td key="opcion"  :props="props">
                   <!--<q-btn icon="edit" dense color="yellow"/>-->
+                   <q-btn color="info" dense icon="print" @click="print(props.row)" />
+                  
                 </q-td>
             </template>
             <template v-slot:body-cell-imagen="props">
@@ -53,7 +55,8 @@
 <script>
 import {globalStore} from "stores/global";
 import xlsx from "json-as-xlsx"
-
+import {date} from 'quasar'
+import {jsPDF} from "jspdf";
 export default {
   name: `Listado`,
   data() {
@@ -106,6 +109,38 @@ export default {
     this.listStudent()
   },
   methods:{
+    print(alumno){
+        var doc = new jsPDF('p','cm','letter')
+        var img = new Image()
+        var img2 = new Image()
+        img.src = 'uto.png'
+        img2.src = 'fni.png'
+        doc.addImage(img, 'jpg', 0.5, 0.5, 2, 2)
+        doc.addImage(img2, 'jpg', 18.5, 0.5, 2, 2)
+        doc.setFont(undefined,'bold')
+        doc.text(5, 1.5, 'V OLIMPIADA DE CIENCIA Y TECNOLOGÍA  ')
+        doc.text(3, 3, 'ALUMNO')
+        doc.text(3, 4, 'UNIDAD EDUCATIVA')
+        doc.text(3, 5, 'CURSO')
+        doc.text(3, 6, 'CELULAR')
+        doc.text(3, 7, 'TUTOR')
+        doc.text(3, 8, 'CATEGORIA')
+        doc.text(3, 9, 'FECHA')
+        doc.setFont(undefined,'normal')
+      // console.log(dat);
+      doc.setFont("courier");
+      doc.setFontSize(14);
+        doc.text(10, 3, alumno.nombres+' '+alumno.apellidos)
+        doc.text(10, 4, alumno.unidad)
+        doc.text(10, 5, alumno.curso)
+        doc.text(10, 6, alumno.celular+'')
+        doc.text(10, 7, alumno.tutor)
+        doc.text(10, 8, alumno.categoria)
+        doc.text(10, 9, date.formatDate(alumno.created_at,'DD/MM/YYYY'))
+      // var x=0,y=
+      window.open(doc.output('bloburl'), '_blank');
+
+    },
     descargar(archivo){
       var fileName=this.url+'/../../imagenes/'+archivo.imagen;
       window.open(fileName, 'Download');

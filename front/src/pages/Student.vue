@@ -342,6 +342,7 @@ export default {
         doc.text(3, 6, 'CELULAR')
         doc.text(3, 7, 'TUTOR')
         doc.text(3, 8, 'CATEGORIA')
+        doc.text(3, 9, 'FECHA')
         doc.setFont(undefined,'normal')
       // console.log(dat);
       doc.setFont("courier");
@@ -352,6 +353,7 @@ export default {
         doc.text(10, 6, alumno.celular+'')
         doc.text(10, 7, alumno.tutor)
         doc.text(10, 8, alumno.categoria)
+        doc.text(10, 9, date.formatDate(alumno.created_at,'DD/MM/YYYY'))
       // var x=0,y=
       window.open(doc.output('bloburl'), '_blank');
 
