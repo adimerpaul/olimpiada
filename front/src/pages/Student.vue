@@ -39,11 +39,14 @@
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Unidad Educativa</div>
-                <q-select dense outlined placeholder="Unidad Educativa" :options="colegios" v-model="estudiante.unidad" required>
+                  <q-input list="col" dense outlined placeholder="Unidad Educativa" v-model="estudiante.unidad" required>
+                  <datalist id="col">
+                     <option v-for=" c in colegios" :key="c">{{c}}</option>
+                  </datalist>
                   <template v-slot:prepend>
                     <q-icon name="o_school"/>
                   </template>
-                </q-select>
+                </q-input>
                 <div class="text-subtitle2 text-grey">Curso</div>
                 <q-select dense outlined placeholder="Curso" :options="cursos" v-model="estudiante.curso" required>
                   <template v-slot:prepend>
