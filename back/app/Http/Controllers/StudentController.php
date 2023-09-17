@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use App\Models\grupo;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
@@ -28,6 +30,14 @@ class StudentController extends Controller
         //
     }
 
+    public function listprof(){
+        return DB::SELECT("SELECT DISTINCT tutor,celular from students");
+    }
+
+    public function buscarEst($ci){
+        return DB::SELECT("SELECT s.*,(select count(*) from grupos g where g.student_id = s.id) num from students s where s.cedula = '$ci'");
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,6 +47,13 @@ class StudentController extends Controller
     public function store(StoreStudentRequest $request)
     {
         //return Student::create($request->all());
+
+
+        $request->validate([
+            'cedula' => 'required|unique:posts|max:255',
+            'email' => 'required|unique',
+        ]);
+
         $nombreimagen='';
         if ($request->hasFile('imagen')) {
             $file=$request->file('imagen');
@@ -44,16 +61,25 @@ class StudentController extends Controller
             $file->move(\public_path('imagenes'), $nombreimagen);
         }
         $student=new Student();
-        $student->nombres=$request->nombres;
-        $student->apellidos=$request->apellidos;
+        $student->cedula=strtoupper($request->cedula);
+        $student->nombres=strtoupper($request->nombres);
+        $student->apellidos=strtoupper($request->apellidos);
+        $student->correo=$request->correo;
         $student->unidad=$request->unidad;
-        $student->imagen=$nombreimagen;
         $student->curso=$request->curso;
-        $student->tutor=$request->tutor;
+        $student->tutor=strtoupper($request->tutor);
         $student->celular=$request->celular;
-        $student->categoria=$request->categoria;
-         $student->save();
-         return $student;
+        $student->save();
+
+        $grupo=new Grupo;
+        $grupo->fecha=date('Y-m-d');
+        $grupo->categoria=$request->categoria;
+        $grupo->imagen=$nombreimagen;
+        $grupo->student_id=$student->id;
+        $grupo->save();
+
+        $stud= Student::where('id',$student->id)->with('grupo')->first();
+        return $stud;
     }
 
     /**
@@ -87,8 +113,27 @@ class StudentController extends Controller
      */
     public function update(UpdateStudentRequest $request, Student $student)
     {
-        $student->update($request->validated());
-        return $student;
+        $gr=Grupo::where('student_id',$request->id)->count();
+        if($gr>=3)
+            return false;
+
+
+        $nombreimagen='';
+        if ($request->hasFile('imagen')) {
+            $file=$request->file('imagen');
+            $nombreimagen = $file->getClientOriginalName();
+            $file->move(\public_path('imagenes'), $nombreimagen);
+        }
+
+        $grupo=new Grupo;
+        $grupo->categoria=$request->categoria;
+        $grupo->imagen=$nombreimagen;
+        $grupo->student_id=$request->id;
+        $grupo->save();
+
+        $stud= Student::where('id',$request->id)->with('grupo')->first();
+        return $stud;
+
     }
 
     /**

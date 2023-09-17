@@ -13,9 +13,15 @@ class Student extends Model
         'apellidos',
         'unidad',
         'curso',
+        'cedula',
+        'correo',
         'tutor',
         'celular',
-        'imagen',
-        'categoria',
+      //  'imagen',
+   //     'categoria',
     ];
+
+    public function grupo(){
+        return $this->hasMany(Grupo::class);
+    }
 }

@@ -7,7 +7,7 @@
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="uto.png" width="30px"/></div>
             <div class="col-8 col-sm-6 flex flex-center">
               <small style="white-space: normal;letter-spacing: -0.3px;line-height: 85%;" class="text-center text-subtitle2">
-                V OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
+                VI OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
               </small>
             </div>
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="fni.png" width="30px"/></div>
@@ -26,20 +26,32 @@
                 <div class="text-subtitle2 text-center">Datos del estudiante</div>
               </q-card-section>
               <q-card-section class="q-pt-none">
+                <div class="text-subtitle2 text-grey">Cedula Identidad</div>
+                <q-input dense outlined placeholder="numero de cedula de identidad" v-model="estudiante.cedula" required @keyup="buscar" class="mayus">
+                  <template v-slot:prepend>
+                    <q-icon name="badge"/>
+                  </template>
+                </q-input>
                 <div class="text-subtitle2 text-grey">Nombres</div>
-                <q-input dense outlined placeholder="Nombre" v-model="estudiante.nombres" required>
+                <q-input dense outlined placeholder="Nombres" v-model="estudiante.nombres" required :disable="regis" class="mayus">
                   <template v-slot:prepend>
                     <q-icon name="perm_identity"/>
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Apellidos</div>
-                <q-input dense outlined placeholder="Apellido" v-model="estudiante.apellidos" required>
+                <q-input dense outlined placeholder="Apellidos" v-model="estudiante.apellidos" required :disable="regis" class="mayus">
                   <template v-slot:prepend>
                     <q-icon name="o_group"/>
                   </template>
                 </q-input>
+                <div class="text-subtitle2 text-grey">Correo Electronico</div>
+                <q-input dense outlined placeholder="E-mail" v-model="estudiante.correo" required :disable="regis">
+                  <template v-slot:prepend>
+                    <q-icon name="alternate_email"/>
+                  </template>
+                </q-input>
                 <div class="text-subtitle2 text-grey">Unidad Educativa</div>
-                  <q-input list="col" dense outlined placeholder="Unidad Educativa" v-model="estudiante.unidad" required>
+                  <q-input list="col" dense outlined placeholder="Unidad Educativa" v-model="estudiante.unidad" required :disable="regis">
                   <datalist id="col">
                      <option v-for=" c in colegios" :key="c">{{c}}</option>
                   </datalist>
@@ -48,36 +60,41 @@
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Curso</div>
-                <q-select dense outlined placeholder="Curso" :options="cursos" v-model="estudiante.curso" required>
+                <q-select dense outlined placeholder="Curso" :options="cursos" v-model="estudiante.curso" required :disable="regis">
                   <template v-slot:prepend>
                     <q-icon name="o_class"/>
                   </template>
                 </q-select>
+
+                <div class="text-subtitle2 text-grey">Tutor</div>
+                <q-input dense outlined placeholder="Tutor" v-model="estudiante.tutor" required list="profesor" :disable="regis" class="mayus" >
+                  <template v-slot:prepend>
+                    <q-icon name="cast_for_education"/>
+                  </template>
+                </q-input>
+                <datalist id="profesor" @click="estudiante.celular=d.celular">
+                  <option v-for="d in profesor" :key="d" :value="d.id" @select="estudiante.celular=d.celular">{{d.tutor}}</option>        
+                </datalist>
+                <div class="text-subtitle2 text-grey">Celular</div>
+                <q-input dense outlined placeholder="Celular" v-model="estudiante.celular" required :disable="regis">
+                  <template v-slot:prepend>
+                    <q-icon name="o_phone"/>
+                  </template>
+                </q-input>
                 <div class="text-subtitle2 text-grey">Categoria</div>
-                <q-select dense outlined placeholder="Categoria" :options="categorias" v-model="estudiante.categoriaSelect" required>
+                <q-select dense outlined placeholder="Categoria" :options="categorias" v-model="estudiante.categoriaSelect" required >
                   <template v-slot:prepend>
                     <q-icon name="o_category"/>
                   </template>
                 </q-select>
                 <div class="text-red" v-if="estudiante.categoriaSelect!=null" v-html="estudiante.categoriaSelect.fecha"></div>
-                <div class="text-subtitle2 text-grey">Tutor</div>
-                <q-input dense outlined placeholder="Tutor" v-model="estudiante.tutor" required>
-                  <template v-slot:prepend>
-                    <q-icon name="cast_for_education"/>
-                  </template>
-                </q-input>
-                <div class="text-subtitle2 text-grey">Celular</div>
-                <q-input dense outlined placeholder="Celular" v-model="estudiante.celular" required>
-                  <template v-slot:prepend>
-                    <q-icon name="o_phone"/>
-                  </template>
-                </q-input>
                 <div class="text-subtitle2 text-grey">Boleta de pago por inscripción</div>
                   <input dense outlined type="file" @change="getImage" >
 <!--                  <template v-slot:prepend>-->
 <!--                    <q-icon name="home"/>-->
 <!--                  </template>-->
-                <q-btn color="primary" label="Guardar" type="submit" icon="add_circle_outline" class="full-width"/>
+                <div class="text-red" v-if="numcat" v-html="'Ya se encuentra registrado en 3 CATEGORIAS'"></div>
+                <q-btn color="primary" label="Guardar" type="submit" icon="add_circle_outline" class="full-width" :disable="numcat"/>
               </q-card-section>
             </q-card>
           </div>
@@ -97,6 +114,7 @@ export default {
   data() {
     return {
       estudiante:{},
+      regis:false,
       cursos:[
         '1ro Secundaria',
         '2do Secundaria',
@@ -181,7 +199,8 @@ export default {
       ],
       imagen:'',
       archivo : null,
-
+      profesor:[],
+      numcat:false
     }
   },
   computed: {
@@ -261,14 +280,56 @@ export default {
       return $data
     }
   },
+  created(){
+    this.getProf()
+  },
   methods:{
+    getProf(){
+      this.$api.get('listprof').then((res)=>{
+        console.log(res.data)
+        this.profesor= res.data
+      })
+
+    },
+    buscar(){
+      let cedula=this.estudiante.cedula
+      this.$api.post('buscarEst/'+cedula).then((response)=>{
+        console.log(response.data)
+        if(response.data.length==0){
+          this.regis=false
+          this.estudiante.id=null
+          this.estudiante.nombres=null
+          this.estudiante.apellidos=null
+          this.estudiante.correo=null
+          this.estudiante.unidad=null
+          this.estudiante.curso=null
+          this.estudiante.tutor=null
+          this.estudiante.celular=null
+        }
+        else{
+          this.regis=true
+          this.numcat=false
+          if(response.data[0].num >= 3)
+            this.numcat=true
+          this.estudiante.id=response.data[0].id
+          this.estudiante.nombres=response.data[0].nombres
+          this.estudiante.apellidos=response.data[0].apellidos
+          this.estudiante.correo=response.data[0].correo
+          this.estudiante.unidad=response.data[0].unidad
+          this.estudiante.curso=response.data[0].curso
+          this.estudiante.tutor=response.data[0].tutor
+          this.estudiante.celular=response.data[0].celular
+        }
+      })
+    },
     getImage(event){
       this.imagen = event.target.files[0];
     },
     studentCreate(){
-      if(this.imagen==null)
+      if(this.imagen==null || this.imagen==undefined)
       { return false}
-
+      if(this.numcat)
+        return false
 
       this.$q.dialog({
         title: 'Confirmación',
@@ -281,8 +342,10 @@ export default {
         var data = new  FormData();
 
         data.append('imagen', this.imagen);
+        data.append('cedula', this.estudiante.cedula);
         data.append('nombres', this.estudiante.nombres);
         data.append('apellidos', this.estudiante.apellidos);
+        data.append('correo', this.estudiante.correo);//
         data.append('unidad', this.estudiante.unidad);//
         data.append('curso', this.estudiante.curso);//
         data.append('tutor', this.estudiante.tutor);
@@ -361,3 +424,8 @@ export default {
   }
 }
 </script>
+<style>
+ .mayus{
+  text-transform: uppercase;
+ }
+</style>

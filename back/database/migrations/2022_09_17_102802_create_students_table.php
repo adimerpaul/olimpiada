@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('cedula')->unique();
             $table->string('nombres');
             $table->string('apellidos');
+            $table->string('correo')->unique();
             $table->string('unidad');
             $table->string('curso');
             $table->string('tutor');
             $table->string('celular');
-            $table->string('imagen');
-            $table->string('categoria');
+            //$table->string('imagen');
+            //$table->string('categoria');
             $table->timestamps();
         });
     }
