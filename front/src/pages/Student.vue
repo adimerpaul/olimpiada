@@ -45,7 +45,7 @@
                   </template>
                 </q-input>
                 <div class="text-subtitle2 text-grey">Correo Electronico</div>
-                <q-input dense outlined placeholder="E-mail" v-model="estudiante.correo" required :disable="regis">
+                <q-input dense outlined placeholder="E-mail" type="email" v-model="estudiante.correo" required :disable="regis">
                   <template v-slot:prepend>
                     <q-icon name="alternate_email"/>
                   </template>
@@ -292,6 +292,7 @@ export default {
 
     },
     buscar(){
+      this.estudiante.cedula=this.estudiante.cedula.replace(/\s+/g, '')
       let cedula=this.estudiante.cedula
       this.$api.post('buscarEst/'+cedula).then((response)=>{
         console.log(response.data)
@@ -398,25 +399,33 @@ export default {
         doc.addImage(img, 'jpg', 0.5, 0.5, 2, 2)
         doc.addImage(img2, 'jpg', 18.5, 0.5, 2, 2)
         doc.setFont(undefined,'bold')
-        doc.text(5, 1.5, 'V OLIMPIADA DE CIENCIA Y TECNOLOGÍA  ')
-        doc.text(3, 3, 'ALUMNO')
-        doc.text(3, 4, 'UNIDAD EDUCATIVA')
-        doc.text(3, 5, 'CURSO')
-        doc.text(3, 6, 'CELULAR')
-        doc.text(3, 7, 'TUTOR')
-        doc.text(3, 8, 'CATEGORIA')
-        doc.text(3, 9, 'FECHA')
+        doc.text(5, 1.5, 'VI OLIMPIADA DE CIENCIA Y TECNOLOGÍA  ')
+        doc.text(3, 3, 'CI')
+        doc.text(3, 4, 'ALUMNO')
+        doc.text(3, 5, 'UNIDAD EDUCATIVA')
+        doc.text(3, 6, 'CURSO')
+        doc.text(3, 7, 'CELULAR')
+        doc.text(3, 8, 'TUTOR')
+        doc.text(3, 9, 'CATEGORIAS y FECHA')
         doc.setFont(undefined,'normal')
       // console.log(dat);
       doc.setFont("courier");
       doc.setFontSize(14);
-        doc.text(10, 3, alumno.nombres+' '+alumno.apellidos)
-        doc.text(10, 4, alumno.unidad)
-        doc.text(10, 5, alumno.curso)
-        doc.text(10, 6, alumno.celular+'')
-        doc.text(10, 7, alumno.tutor)
-        doc.text(10, 8, alumno.categoria)
-        doc.text(10, 9, date.formatDate(alumno.created_at,'DD/MM/YYYY'))
+        doc.text(10, 3, alumno.cedula)
+        doc.text(10, 4, alumno.nombres+' '+alumno.apellidos)
+        doc.text(10, 5, alumno.unidad)
+        doc.text(10, 6, alumno.curso)
+        doc.text(10, 7, alumno.celular+'')
+        doc.text(10, 8, alumno.tutor)
+        let y=0
+        doc.setFontSize(10);
+
+        alumno.grupo.forEach(r => {
+          doc.text(10, 9+y, date.formatDate(r.fecha,'DD/MM/YYYY'))
+          doc.text(15, 9+y, r.categoria)
+          y++
+        });
+
       // var x=0,y=
       window.open(doc.output('bloburl'), '_blank');
 

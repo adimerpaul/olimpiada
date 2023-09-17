@@ -7,6 +7,7 @@ use App\Models\grupo;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
@@ -17,9 +18,12 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::all();
+        return Student::with('grupo')->get();
     }
 
+    public function listado(Request $request){
+        return DB::SELECT("SELECT * from students s inner join grupos g on s.id= g.student_id where s.curso='$request->curso' and g.categoria='$request->categoria'");
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -50,8 +54,8 @@ class StudentController extends Controller
 
 
         $request->validate([
-            'cedula' => 'required|unique:posts|max:255',
-            'email' => 'required|unique',
+            'cedula' => 'required|unique:students|max:255',
+            'correo' => 'required|unique:students',
         ]);
 
         $nombreimagen='';
