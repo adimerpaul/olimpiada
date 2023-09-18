@@ -81,7 +81,7 @@ module.exports = configure(function (ctx) {
       env: {
         API: ctx.dev
           ? 'http://localhost:8000/api/'
-          : 'https://bregistro.miganancia.cf/api/'
+          : 'https://bolimpiadafni.siscenter.org/api/'
       }
 
     },
