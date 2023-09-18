@@ -339,6 +339,7 @@ export default {
         cancel: true,
         persistent: true
       }).onOk(() => {
+        if(this.estudiante.id==undefined || this.estudiante.id==null){
         this.$q.loading.show()
         var data = new  FormData();
 
@@ -352,8 +353,7 @@ export default {
         data.append('tutor', this.estudiante.tutor);
         data.append('celular', this.estudiante.celular);
         data.append('categoria', this.estudiante.categoriaSelect.value);
-        this.$api.post('student',data)
-        .then((response)=>{
+        this.$api.post('student',data).then((response)=>{
           this.$q.loading.hide()
           this.imagen=null
           this.estudiante={}
@@ -364,7 +364,6 @@ export default {
             icon: 'check_circle',
             message: 'Estudiante creado correctamente'
           })
-
           // this.$router.push('/estudiantes')
         })
         .catch((error)=>{
@@ -373,10 +372,45 @@ export default {
             color: 'negative',
             textColor: 'white',
             icon: 'error',
-            position: 'top',
-            message: error.response.data.message
+            message: 'Error al crear el estudiante'
           })
-        })
+        })}
+        else{
+          this.$q.loading.show()
+        var data = new  FormData();
+        data.append('imagen', this.imagen);
+        data.append('id', this.estudiante.id);
+        data.append('cedula', this.estudiante.cedula);
+        data.append('nombres', this.estudiante.nombres);
+        data.append('apellidos', this.estudiante.apellidos);
+        data.append('correo', this.estudiante.correo);//
+        data.append('unidad', this.estudiante.unidad);//
+        data.append('curso', this.estudiante.curso);//
+        data.append('tutor', this.estudiante.tutor);
+        data.append('celular', this.estudiante.celular);
+        data.append('categoria', this.estudiante.categoriaSelect.value);
+        this.$api.put('student/'+this.estudiante.id,data).then((response)=>{
+          this.$q.loading.hide()
+          this.imagen=null
+          this.estudiante={}
+          this.print(response.data)
+          this.$q.notify({
+            color: 'positive',
+            textColor: 'white',
+            icon: 'check_circle',
+            message: 'Estudiante creado correctamente'
+          })
+          // this.$router.push('/estudiantes')
+        }).catch((error)=>{
+          this.$q.loading.hide()
+          this.$q.notify({
+            color: 'negative',
+            textColor: 'white',
+            icon: 'error',
+            message: 'Error al crear el estudiante'
+          })
+        }) 
+        }
       }).onCancel(() => {
         this.$q.notify({
           color: 'red',
@@ -385,7 +419,8 @@ export default {
           message: 'Creación de estudiante cancelada'
         })
       })
-      // this.$api.post('estudiante',this.estudiante).then((response)=>{
+
+            // this.$api.post('estudiante',this.estudiante).then((response)=>{
       //   console.log(response)
       // },(error)=>{
       //   console.log(error)

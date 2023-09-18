@@ -51,8 +51,9 @@
           <div class="row">
             <div class="col-3"><q-select v-model="curso" :options="cursos" label="CURSO" dense outlined /></div>
             <div class="col-3"><q-select v-model="cat" :options="categoria" label="CATEGORIA" dense outlined /></div>
-            <div class="col-3"><q-btn color="green" label="Buscar"  dense @click="getListado"/></div>
-            <div class="col-3"><q-btn color="accent" label="EXCEL"  dense @click="excelFiltro"/></div>
+            <div class="col-2"><q-btn color="green" label="Buscar"  dense @click="getListado"/></div>
+            <div class="col-2"><q-btn color="info" label="IMPRESION"  dense @click="impresion"/></div>
+            <div class="col-2"><q-btn color="accent" label="EXCEL"  dense @click="excelFiltro"/></div>
 
           </div>
           <div>
@@ -136,6 +137,31 @@ export default {
     this.listStudent()
   },
   methods:{
+    impresion(){
+      let cadena="<style>\
+      .tab1{width: 100%; border-collapse: collapse;}\
+        table, th, td {border: 1px solid;}\
+      }\
+      </style>"
+      cadena+="<center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center><br>"
+      cadena+="<center>LISTA ESTUDIANTES DE "+this.curso+" DE LA CATEGORIA: "+this.cat+"</center><br>"
+      cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>TUTOR</th><th>CELULAR</th></tr>'
+      this.filtroEst.forEach(r=> {
+          cadena+="<tr><td>"+r.cedula+"</td><td>"+r.nombres +" "+ r.apellidos+"</td><td>"+r.correo+"</td><td>"+r.unidad+"</td><td>"+r.tutor+"</td><td>"+r.celular+"</td></tr>"
+      })
+      cadena+="</table>"
+
+      let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
+        myWindow.document.write(cadena);
+        myWindow.document.close();
+        myWindow.focus();
+        setTimeout(function(){
+          myWindow.print();
+          myWindow.close();
+          // this.comanda(sale_id);
+          //    impAniv(response);
+        },500);
+    },
     getListado(){
       if(this.curso=='' || this.cat=='')
       return false  

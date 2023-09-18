@@ -130,6 +130,7 @@ class StudentController extends Controller
         }
 
         $grupo=new Grupo;
+        $grupo->fecha=date('Y-m-d');
         $grupo->categoria=$request->categoria;
         $grupo->imagen=$nombreimagen;
         $grupo->student_id=$request->id;
