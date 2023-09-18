@@ -73,6 +73,7 @@ export default {
         console.log(res.data)
         this.$q.loading.hide()
         localStorage.setItem('tokenmi', res.data.token)
+        localStorage.setItem('user', res.data.user.name)
         this.store.isLoggedIn=true
         this.$api.defaults.headers.common['Authorization'] = 'Bearer '+res.data.token
         this.$router.push('/listado')
