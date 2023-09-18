@@ -252,6 +252,7 @@ export default {
           {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
           {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
           {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }else if (this.estudiante.curso == '6to Secundaria') {
         $data=[
@@ -263,6 +264,7 @@ export default {
           {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
           {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
           {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'REDES NIVEL2',value:'REDES NIVEL2',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }else{
         $data=[
@@ -275,6 +277,7 @@ export default {
           {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
           {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
           {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }
       return $data

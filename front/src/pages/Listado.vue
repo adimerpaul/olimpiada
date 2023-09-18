@@ -159,7 +159,8 @@ export default {
         table, th, td {border: 1px solid;}\
       }\
       </style>"
-      cadena+="<center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center><br>"
+      cadena+="<img src='fni.png' style='width:50px; height:50px;    position:absolute;    left:0px;    top:0px;    z-index:-1; '><center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center> <div style='position:absolute;    right:0px;    top:0px;    z-index:-1; '>"+ this.user.name +"</div><br>"
+    
       cadena+="<center>LISTA ESTUDIANTES DE "+this.curso+" DE LA CATEGORIA: "+this.cat+"</center><br>"
       cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>TUTOR</th><th>CELULAR</th></tr>'
       this.filtroEst.forEach(r=> {
