@@ -294,8 +294,11 @@ export default {
     buscar(){
       this.estudiante.cedula=this.estudiante.cedula.replace(/\s+/g, '')
       let cedula=this.estudiante.cedula
+      if (cedula.length<5 && cedula.length==0){
+        return false
+      }
       this.$api.post('buscarEst/'+cedula).then((response)=>{
-        console.log(response.data)
+        // console.log(response.data)
         if(response.data.length==0){
           this.regis=false
           this.estudiante.id=null
@@ -409,7 +412,7 @@ export default {
             icon: 'error',
             message: 'Error al crear el estudiante'
           })
-        }) 
+        })
         }
       }).onCancel(() => {
         this.$q.notify({
