@@ -161,7 +161,7 @@ export default {
       }\
       </style>"
       cadena+="<img src='fni.png' style='width:50px; height:50px;    position:absolute;    left:0px;    top:0px;    z-index:-1; '><center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center> <div style='position:absolute;    right:0px;    top:0px;    z-index:-1; '>"+ localStorage.getItem('user') +"</div><br>"
-    
+
       cadena+="<center>LISTA ESTUDIANTES DE "+this.curso+" DE LA CATEGORIA: "+this.cat+"</center><br>"
       cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>TUTOR</th><th>CELULAR</th></tr>'
       this.filtroEst.forEach(r=> {
@@ -187,8 +187,8 @@ export default {
       }\
       </style>"
       cadena+="<img src='fni.png' style='width:50px; height:50px;    position:absolute;    left:0px;    top:0px;    z-index:-1; '><center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center> <div style='position:absolute;    right:0px;    top:0px;    z-index:-1; '>"+ localStorage.getItem('user') +"</div><br>"
-    
-      cadena+="<center>LISTA ESTUDIANTES DE "+this.curso+" DE LA CATEGORIA: "+this.cat+"</center><br>"
+
+      cadena+="<center>LISTA ESTUDIANTES </center><br>"
       cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>CURSO</th><th>TUTOR</th><th>CELULAR</th><th>CATEGORIA</th></tr>'
       this.students.forEach(r=> {
           cadena+="<tr><td>"+r.cedula+"</td><td>"+r.nombres +" "+ r.apellidos+"</td><td>"+r.correo+"</td><td>"+r.unidad+"</td><td>"+r.curso+"</td><td>"+r.tutor+"</td><td>"+r.celular+"</td><td>"
