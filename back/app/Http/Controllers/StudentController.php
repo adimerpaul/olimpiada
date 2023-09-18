@@ -54,8 +54,8 @@ class StudentController extends Controller
 
 
         $request->validate([
-            'cedula' => 'required|unique:students|max:255',
-            'correo' => 'required|unique:students',
+            'cedula' => 'required|max:255',
+            'correo' => 'required',
         ]);
 
         $nombreimagen='';
