@@ -330,6 +330,16 @@ export default {
       this.imagen = event.target.files[0];
     },
     studentCreate(){
+      if (this.estudiante.categoriaSelect==null || this.estudiante.categoriaSelect==undefined){
+        this.$q.notify({
+          color: 'red',
+          textColor: 'white',
+          icon: 'warning',
+          position: 'top',
+          message: 'Debe seleccionar una categoria'
+        })
+        return false
+      }
       if(this.imagen==null || this.imagen==undefined){
        this.$q.notify({
           color: 'red',
