@@ -22,6 +22,7 @@
         <div class="text-h5 text-center">LISTADO DE ESTUDIANTES</div>
         <div class="row">
           <div class="col-3"><q-btn label="Export EXCEL" color="teal" @click="exportTable"/></div>
+          <div class="col-3"><q-btn label="IMPRESION" color="info" @click="impTodo"/></div>
           <div class="col-3"><q-btn label="ACTUALIZAR" color="green" @click="listStudent"/></div>
 
         </div>
@@ -165,6 +166,36 @@ export default {
       cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>TUTOR</th><th>CELULAR</th></tr>'
       this.filtroEst.forEach(r=> {
           cadena+="<tr><td>"+r.cedula+"</td><td>"+r.nombres +" "+ r.apellidos+"</td><td>"+r.correo+"</td><td>"+r.unidad+"</td><td>"+r.tutor+"</td><td>"+r.celular+"</td></tr>"
+      })
+      cadena+="</table>"
+
+      let myWindow = window.open("", "Imprimir", "width=1000,height=1000");
+        myWindow.document.write(cadena);
+        myWindow.document.close();
+        myWindow.focus();
+        setTimeout(function(){
+          myWindow.print();
+          myWindow.close();
+          // this.comanda(sale_id);
+          //    impAniv(response);
+        },500);
+    },
+    impTodo(){
+      let cadena="<style>\
+      .tab1{width: 100%; border-collapse: collapse;}\
+        table, th, td {border: 1px solid;}\
+      }\
+      </style>"
+      cadena+="<img src='fni.png' style='width:50px; height:50px;    position:absolute;    left:0px;    top:0px;    z-index:-1; '><center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center> <div style='position:absolute;    right:0px;    top:0px;    z-index:-1; '>"+ localStorage.getItem('user') +"</div><br>"
+    
+      cadena+="<center>LISTA ESTUDIANTES DE "+this.curso+" DE LA CATEGORIA: "+this.cat+"</center><br>"
+      cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>CURSO</th><th>TUTOR</th><th>CELULAR</th><th>CATEGORIA</th></tr>'
+      this.students.forEach(r=> {
+          cadena+="<tr><td>"+r.cedula+"</td><td>"+r.nombres +" "+ r.apellidos+"</td><td>"+r.correo+"</td><td>"+r.unidad+"</td><td>"+r.curso+"</td><td>"+r.tutor+"</td><td>"+r.celular+"</td><td>"
+          r.grupo.forEach(d => {
+              cadena+= d.categoria+"<br>"
+          })
+          cadena+="</td></tr>"
       })
       cadena+="</table>"
 
