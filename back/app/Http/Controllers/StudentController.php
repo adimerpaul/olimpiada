@@ -71,16 +71,7 @@ class StudentController extends Controller
             $nombreimagen = $file->getClientOriginalName();
             $file->move(\public_path('imagenes'), $nombreimagen);
         }
-        $student=new Student();
-        $student->cedula=strtoupper($request->cedula);
-        $student->nombres=strtoupper($request->nombres);
-        $student->apellidos=strtoupper($request->apellidos);
-        $student->correo=$request->correo;
-        $student->unidad=$request->unidad;
-        $student->curso=$request->curso;
-        $student->tutor=strtoupper($request->tutor);
-        $student->celular=$request->celular;
-        $student->save();
+        $student = $this->upsertStudent($request);
 
         $grupo=new Grupo;
         $grupo->fecha=date('Y-m-d');
@@ -158,5 +149,29 @@ class StudentController extends Controller
     {
         $student->delete();
         return $student;
+    }
+
+    /**
+     * @param StoreStudentRequest $request
+     * @return Student
+     */
+    public function upsertStudent(StoreStudentRequest $request): Student
+    {
+        $ciExistente = Student::where('cedula',$request->cedula)->first();
+        if($ciExistente){
+            return $ciExistente;
+        }else{
+            $student = new Student();
+            $student->cedula = strtoupper($request->cedula);
+            $student->nombres = strtoupper($request->nombres);
+            $student->apellidos = strtoupper($request->apellidos);
+            $student->correo = $request->correo;
+            $student->unidad = $request->unidad;
+            $student->curso = $request->curso;
+            $student->tutor = strtoupper($request->tutor);
+            $student->celular = $request->celular;
+            $student->save();
+            return $student;
+        }
     }
 }
