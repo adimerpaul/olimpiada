@@ -57,6 +57,13 @@ class StudentController extends Controller
             'cedula' => 'required|max:255',
             'correo' => 'required',
         ]);
+        $cantidadCI = Student::where('cedula',$request->cedula)->count();
+        if($cantidadCI>=3) {
+            return response()->json([
+                'message' => 'El estudiante ya tiene 3 registros',
+                'code' => 400
+            ], 400);
+        }
 
         $nombreimagen='';
         if ($request->hasFile('imagen')) {
