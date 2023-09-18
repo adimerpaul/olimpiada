@@ -12,7 +12,7 @@
             </div>
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="fni.png" width="30px"/></div>
             <div class="col-1 col-sm-1 flex flex-center"><q-btn @click="logout" label="" color="negative" icon="logout" dense/></div>
-            
+
           </div>
         </q-toolbar-title>
       </q-toolbar>
@@ -27,12 +27,15 @@
         </div>
 
         <div class="col-12">
-          <q-table label="ESTUDIANTES" :rows="students" :columns="columnas">
+          <q-table label="ESTUDIANTES" :rows="students" :columns="columnas" :filter="filter1">
+            <template v-slot:top-right>
+              <q-input outlined v-model="filter1" label="Buscar" />
+            </template>
             <template v-slot:body-cell-opcion="props">
                 <q-td key="opcion"  :props="props">
                   <!--<q-btn icon="edit" dense color="yellow"/>-->
                    <q-btn color="info" dense icon="print" @click="print(props.row)" />
-                  
+
                 </q-td>
             </template>
             <template v-slot:body-cell-imagen="props">
@@ -57,8 +60,18 @@
 
           </div>
           <div>
-            <q-table label="ESTUDIANTES" :rows="filtroEst" :columns="col" />
-
+            <q-table label="ESTUDIANTES" :rows="filtroEst" :columns="col" :filter="filter2">
+              <template v-slot:top-right>
+                <q-input outlined v-model="filter2" label="Buscar" />
+              </template>
+              <template v-slot:body-cell-imagen="props">
+                <q-td key="imagen" :props="props">
+                  <a :href="url+'/../../imagenes/'+props.row.imagen" target="_blank">
+                    <q-img :src="url+'/../../imagenes/'+props.row.imagen" width="150px"/>
+                  </a>
+                </q-td>
+              </template>
+            </q-table>
           </div>
         </div>
       </q-page>
@@ -75,6 +88,8 @@ export default {
   name: `Listado`,
   data() {
     return {
+      filter1:'',
+      filter2:'',
       curso:'',
       cat:'',
       cursos:[
@@ -124,6 +139,7 @@ export default {
         {label:'CURSO',field:'curso',name:'curso'},
         {label:'TUTOR',field:'tutor',name:'tutor'},
         {label:'CELULAR',field:'celular',name:'celular'},
+        {label: 'IMAGE', field: 'imagen', name: 'imagen'},
         {label:'CATEGORIA',field:'categoria',name:'categoria'},
       ]
     }
@@ -164,7 +180,7 @@ export default {
     },
     getListado(){
       if(this.curso=='' || this.cat=='')
-      return false  
+      return false
       this.$api.post('listado',{'curso':this.curso,'categoria':this.cat}).then((res)=>{
         console.log(res.data)
         this.filtroEst=res.data
@@ -172,11 +188,20 @@ export default {
     },
     logout(){
       this.$q.loading.show()
-      this.$store.dispatch('login/logout')
-        .then(() => {
-          this.$q.loading.hide()
-          this.$router.push('/login')
+      this.$api.post('logout').then((res) =>{
+        console.log(res.data)
+        this.$q.loading.hide()
+        localStorage.removeItem('tokenmi')
+        this.store.isLoggedIn=false
+        this.$router.push('/')
+      }).catch(err => {
+        this.$q.loading.hide();
+        this.$q.notify({
+          message:err.response.data.message,
+          color:'red',
+          icon:'error'
         })
+      })
     },
     print(alumno){
         var doc = new jsPDF('p','cm','letter')

@@ -48,7 +48,7 @@ class UserController extends Controller
     public function me(Request $request){
         $user=User::find($request->user()->id);
 
-        return response()->json(['user'=>$request->user()],200);
+        return response()->json(['user'=>$user],200);
 
     }
     public function logout(Request $request){

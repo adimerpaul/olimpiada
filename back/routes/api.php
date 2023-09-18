@@ -18,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 //    return $request->user();
 //});
 
-Route::resource('student', App\Http\Controllers\StudentController::class);
+
 Route::post('/login',[\App\Http\Controllers\UserController::class,'login']);
-Route::post('/logout', [\App\Http\Controllers\UserController::class,'logout']);
-Route::post('/me', [\App\Http\Controllers\UserController::class,'me']);
-Route::get('/listprof', [\App\Http\Controllers\StudentController::class,'listprof']);
-Route::post('/buscarEst/{ci}', [\App\Http\Controllers\StudentController::class,'buscarEst']);
-Route::post('/listado', [\App\Http\Controllers\StudentController::class,'listado']);
+Route::group(['middleware'=>['auth:sanctum']],function (){
+    Route::post('/logout', [\App\Http\Controllers\UserController::class,'logout']);
+    Route::post('/me', [\App\Http\Controllers\UserController::class,'me']);
+    Route::get('/listprof', [\App\Http\Controllers\StudentController::class,'listprof']);
+    Route::post('/buscarEst/{ci}', [\App\Http\Controllers\StudentController::class,'buscarEst']);
+    Route::post('/listado', [\App\Http\Controllers\StudentController::class,'listado']);
+    Route::resource('student', App\Http\Controllers\StudentController::class);
+});
