@@ -330,10 +330,24 @@ export default {
       this.imagen = event.target.files[0];
     },
     studentCreate(){
-      if(this.imagen==null || this.imagen==undefined)
-      { return false}
-      if(this.numcat)
+      if(this.imagen==null || this.imagen==undefined){
+       this.$q.notify({
+          color: 'red',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Debe subir la boleta de pago'
+        })
         return false
+      }
+      if(this.numcat){
+        this.$q.notify({
+          color: 'red',
+          textColor: 'white',
+          icon: 'warning',
+          message: 'Ya se encuentra registrado en 3 CATEGORIAS'
+        })
+        return false
+      }
 
       this.$q.dialog({
         title: 'Confirmación',
