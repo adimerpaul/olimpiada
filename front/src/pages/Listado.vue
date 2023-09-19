@@ -7,7 +7,7 @@
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="uto.png" width="30px"/></div>
             <div class="col-7 col-sm-6 flex flex-center">
               <small style="white-space: normal;letter-spacing: -0.3px;line-height: 85%;" class="text-center text-subtitle2">
-                V OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
+                VI OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
               </small>
             </div>
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="fni.png" width="30px"/></div>
@@ -188,7 +188,7 @@ export default {
       </style>"
       cadena+="<img src='fni.png' style='width:50px; height:50px;    position:absolute;    left:0px;    top:0px;    z-index:-1; '><center>VI OLIMPIADAS DE CIENCIAS Y TECNOLOGIAS</center> <div style='position:absolute;    right:0px;    top:0px;    z-index:-1; '>"+ localStorage.getItem('user') +"</div><br>"
 
-      cadena+="<center>LISTA ESTUDIANTES </center><br>"
+      cadena+="<center>LISTA DE ESTUDIANTES</center><br>"
       cadena+='<table class="tab1"><tr><th>CI</th><th>NOMBRE</th><th>EMAIL</th><th>UNIDAD</th><th>CURSO</th><th>TUTOR</th><th>CELULAR</th><th>CATEGORIA</th></tr>'
       this.students.forEach(r=> {
           cadena+="<tr><td>"+r.cedula+"</td><td>"+r.nombres +" "+ r.apellidos+"</td><td>"+r.correo+"</td><td>"+r.unidad+"</td><td>"+r.curso+"</td><td>"+r.tutor+"</td><td>"+r.celular+"</td><td>"

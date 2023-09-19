@@ -7,7 +7,7 @@
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="uto.png" width="30px"/></div>
             <div class="col-8 col-sm-6 flex flex-center">
               <small style="white-space: normal;letter-spacing: -0.3px;line-height: 85%;" class="text-center text-subtitle2">
-                V OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
+                VI OLIMPIADA DE CIENCIA Y TECNOLOGÍA CONVOCATORIA GENERAL
               </small>
             </div>
             <div class="col-2 col-sm-3 flex flex-center"><q-img src="fni.png" width="30px"/></div>
