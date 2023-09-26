@@ -208,76 +208,75 @@ export default {
       let $data=[]
       if (this.estudiante.curso == '1ro Secundaria') {
         $data=[
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 08:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
         ]
       }else if (this.estudiante.curso == '2do Secundaria') {
         $data=[
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 08:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
         ]
       }else if (this.estudiante.curso == '3ro Secundaria') {
         $data=[
-          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 16 de octubre Hrs: 14:00'},
-          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Jueves, 20 de octubre Hrs: 09:00 am'},
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
-          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 15 de octubre Hrs: 14:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 08:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
+          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
+          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 27 de octubre Hrs: 09:00 am'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
         ]
       }else if (this.estudiante.curso == '4to Secundaria') {
         $data=[
-          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 16 de octubre Hrs: 14:00'},
-          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Jueves, 20 de octubre Hrs: 09:00 am'},
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
-          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 15 de octubre Hrs: 14:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 10:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
+          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
+          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 27 de octubre Hrs: 09:00 am'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
         ]
       }else if (this.estudiante.curso == '5to Secundaria') {
         $data=[
-          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 16 de octubre Hrs: 14:00'},
-          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Jueves, 20 de octubre Hrs: 09:00 am'},
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
-          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
-          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 15 de octubre Hrs: 14:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 10:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
+          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
+          {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 27 de octubre Hrs: 09:00 am'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
+          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 3 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }else if (this.estudiante.curso == '6to Secundaria') {
         $data=[
-          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 16 de octubre Hrs: 14:00'},
-          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Jueves, 20 de octubre Hrs: 09:00 am'},
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
+          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 15 de octubre Hrs: 14:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 10:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
+          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
           {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
-          {label:'REDES NIVEL2',value:'REDES NIVEL2',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
+          {label:'REDES NIVEL2',value:'REDES NIVEL2',fecha:'Sabado 4 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }else{
         $data=[
-          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 16 de octubre Hrs: 14:00'},
-          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Jueves, 20 de octubre Hrs: 09:00 am'},
-          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 23 de octubre Hrs: 09:00 am'},
+          {label:'ASTRONOMÍA Y ASTROFÍSICA',value:'ASTRONOMÍA Y ASTROFÍSICA',fecha:'Domingo 15 de octubre Hrs: 14:00'},
+          {label:'BIOLOGÍA',value:'BIOLOGÍA',fecha:'Martes, 17 de octubre Hrs: 10:30 am<br> final Miercoles 25 de Octubre 10:00 am'},
+          {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
           {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
-          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 28 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 03 de noviembre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Día, Mes'},
+          {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
+          {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
           {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
-          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 14 de octubre Hrs: 14:30<br> <b>Etapa final</b> Viernes 21 de octubre Hrs: 14:30'},
-          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
-          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 4 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
+          {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
+          {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 3 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }
       return $data
@@ -383,6 +382,7 @@ export default {
         data.append('tutor', this.estudiante.tutor);
         data.append('celular', this.estudiante.celular);
         data.append('categoria', this.estudiante.categoriaSelect.value);
+        data.append('horario', this.estudiante.categoriaSelect.fecha);
         this.$api.post('student',data).then((response)=>{
           this.$q.loading.hide()
           this.imagen=null

@@ -12,5 +12,6 @@ class Grupo extends Model
         'fecha',
         'imagen',
         'categoria',
+        'horario',
     ];
 }
