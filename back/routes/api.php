@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Route;
 //Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //    return $request->user();
 //});
-Route::post('/student', [\App\Http\Controllers\StudentController::class,'store']);
 
+Route::resource('student', App\Http\Controllers\StudentController::class);
 
 Route::post('/login',[\App\Http\Controllers\UserController::class,'login']);
 Route::group(['middleware'=>['auth:sanctum']],function (){
@@ -27,5 +27,4 @@ Route::group(['middleware'=>['auth:sanctum']],function (){
     Route::get('/listprof', [\App\Http\Controllers\StudentController::class,'listprof']);
     Route::post('/buscarEst/{ci}', [\App\Http\Controllers\StudentController::class,'buscarEst']);
     Route::post('/listado', [\App\Http\Controllers\StudentController::class,'listado']);
-    Route::resource('student', App\Http\Controllers\StudentController::class);
 });
