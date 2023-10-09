@@ -111,6 +111,8 @@ export default {
         'PROGRAMACIÓN Categoría B',
         'QUÍMICA',
         'ROBÓTICA',
+        'REDES NIVEL1',
+        'REDES NIVEL2',
       ],
       url:process.env.API,
       user:{},
