@@ -16,13 +16,39 @@ class StudentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Student::with('grupo')->get();
+        $user = $request->user();
+
+        $students = Student::with('grupo');
+
+        if ($user->categoria != '') {
+            $students->whereHas('grupo', function ($query) use ($user) {
+                $query->where('categoria', $user->categoria);
+            });
+        }
+
+        return $students->get();
     }
 
-    public function listado(Request $request){
-        return DB::SELECT("SELECT * from students s inner join grupos g on s.id= g.student_id where s.curso='$request->curso' and g.categoria='$request->categoria'");
+    public function listado(Request $request)
+    {
+        $user = $request->user();
+        $curso = $request->curso;
+        $categoriaUsuario = $user->categoria;
+
+        $query = "SELECT * FROM students s
+              INNER JOIN grupos g ON s.id = g.student_id
+              WHERE s.curso = ?";
+
+        $bindings = [$curso];
+
+        if (!empty($categoriaUsuario)) {
+            $query .= " AND g.categoria = ?";
+            $bindings[] = $categoriaUsuario;
+        }
+
+        return DB::select($query, $bindings);
     }
     /**
      * Show the form for creating a new resource.

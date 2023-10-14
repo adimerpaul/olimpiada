@@ -272,11 +272,12 @@ export default {
           {label:'FÍSICA',value:'FÍSICA',fecha:'Domingo 22 de octubre Hrs: 09:00 am'},
           {label:'GEOGRAFÍA',value:'GEOGRAFÍA',fecha:'Viernes 04 de noviembre Hrs: 09:00 am'},
           {label:'MATEMÁTICA',value:'MATEMÁTICA',fecha:'<b>Etapa clasificatoria:</b> Viernes 20 de octubre Hrs: 15:00<br> <b>Etapa final</b> Jueves 27 de octubre Hrs: 15:00'},
-          {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
+          {label:'PROGRAMACIÓN Categoría A',value:'PROGRAMACIÓN Categoría A',fecha:'Warm up: Lunes 30 de octubre 14:30<br> Compentencia: Martes 31 de Octubre 09:00'},
           {label:'PROGRAMACIÓN Categoría B',value:'PROGRAMACIÓN Categoría B',fecha:'Día, Mes'},
           {label:'QUÍMICA',value:'QUÍMICA',fecha:'<b>Competencia Teorica:</b> Viernes 13 de octubre Hrs: 14:30<br> <b>Competencia Experimental </b> Viernes 2 de octubre Hrs: 14:30'},
           {label:'ROBÓTICA',value:'ROBÓTICA',fecha:'Lunes 30 de Octubre Hrs 10:30 – 13:00'},
           {label:'REDES NIVEL1',value:'REDES NIVEL1',fecha:'Viernes 3 de Noviembre Hrs 09:00 – 12:00'},
+          {label:'REDES NIVEL2',value:'REDES NIVEL2',fecha:'Sabado 4 de Noviembre Hrs 09:00 – 12:00'},
         ]
       }
       return $data
