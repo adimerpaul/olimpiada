@@ -281,8 +281,17 @@ export default {
       window.open(fileName, 'Download');
     },
     listStudent(){
+      this.students=[]
       this.$api.get('student').then((res) =>{
         console.log(res.data)
+        res.data.forEach(r => {
+          let cat=''
+          r.grupos.forEach(d => {
+            cat+=' '+d.categoria
+          });
+          r.categorias=cat
+          this.students.push(r)
+        });
           this.students=res.data
       })
 
@@ -301,6 +310,7 @@ export default {
             { label: "CURSO", value: "curso" }, // Top level data
             { label: "TUTOR", value: "tutor" }, // Top level data
             { label: "CELULAR", value: "celular" }, // Top level data
+            { label: "CATEGORIA", value: 'categorias' }, // Top level data
           ],
           content: this.students
         },
