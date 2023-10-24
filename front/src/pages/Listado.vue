@@ -288,10 +288,10 @@ export default {
           let cat=''
           r.grupos.forEach(d => {
             cat+=' '+d.categoria
-          });
+          })
           r.categorias=cat
           this.students.push(r)
-        });
+        })
           this.students=res.data
       })
 
