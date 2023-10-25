@@ -286,7 +286,7 @@ export default {
         console.log(res.data)
         res.data.forEach(r => {
           let catego=''
-          r.grupos.forEach(d => {
+          r.grupo.forEach(d => {
             catego+=' '+d.categoria
           })
           r.categorias=catego
