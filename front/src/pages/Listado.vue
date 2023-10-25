@@ -293,6 +293,7 @@ export default {
           this.students.push(r)
         })
           this.students=res.data
+          console.log(this.students)
       })
 
       },
