@@ -285,11 +285,11 @@ export default {
       this.$api.get('student').then((res) =>{
         console.log(res.data)
         res.data.forEach(r => {
-          let cat=''
+          let catego=''
           r.grupos.forEach(d => {
-            cat+=' '+d.categoria
+            catego+=' '+d.categoria
           })
-          r.categorias=cat
+          r.categorias=catego
           this.students.push(r)
         })
           this.students=res.data
