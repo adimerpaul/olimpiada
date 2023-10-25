@@ -292,7 +292,7 @@ export default {
           r.categorias=catego
           this.students.push(r)
         })
-          this.students=res.data
+          //this.students=res.data
           console.log(this.students)
       })
 
